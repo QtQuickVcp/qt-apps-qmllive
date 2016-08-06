@@ -52,7 +52,6 @@ protected:
     static bool isMaster();
 
     QString serverName() const;
-    void setDarkStyle();
     void parseArguments(const QStringList &arguments, Options *options);
 };
 
@@ -103,8 +102,6 @@ Application::Application(int &argc, char **argv)
 {
     setAttribute(Qt::AA_NativeWindows, true);
     setAttribute(Qt::AA_ImmediateWidgetCreation, true);
-
-    setDarkStyle();
 }
 
 bool Application::isMaster()
@@ -148,31 +145,6 @@ QString Application::serverName() const
     return QString::fromLatin1("%1.%2-app")
         .arg(organizationDomain().isEmpty() ? organizationName() : organizationDomain())
         .arg(applicationName());
-}
-
-void Application::setDarkStyle()
-{
-    QStyle *style = QStyleFactory::create("fusion");
-    if (!style) {
-        return;
-    }
-    setStyle(style);
-
-    QPalette palette;
-    palette.setColor(QPalette::Window, QColor("#3D3D3D"));
-    palette.setColor(QPalette::WindowText, QColor("#FFFFFF"));
-    palette.setColor(QPalette::Base, QColor("#303030"));
-    palette.setColor(QPalette::AlternateBase, QColor("#4A4A4A"));
-    palette.setColor(QPalette::ToolTipBase, QColor("#FFFFFF"));
-    palette.setColor(QPalette::ToolTipText, QColor("#3D3D3D"));
-    palette.setColor(QPalette::Text, QColor("#F0F0F0"));
-    palette.setColor(QPalette::Button, QColor("#353535"));
-    palette.setColor(QPalette::ButtonText, QColor("#FFFFFF"));
-    palette.setColor(QPalette::Disabled, QPalette::ButtonText, QColor("#A0A0A0"));
-    palette.setColor(QPalette::BrightText, QColor("#D0021B"));
-    palette.setColor(QPalette::Highlight, QColor("#F19300"));
-    palette.setColor(QPalette::HighlightedText, QColor("#1C1C1C"));
-    setPalette(palette);
 }
 
 void Application::parseArguments(const QStringList &arguments, Options *options)
