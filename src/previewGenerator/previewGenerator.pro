@@ -12,7 +12,7 @@ else: target.path = $$PREFIX/libexec/qmllive
 INSTALLS += target
 
 CONFIG += c++11
-QT = gui core quick
+QT = gui core quick svg
 
 SOURCES += \
     main.cpp
