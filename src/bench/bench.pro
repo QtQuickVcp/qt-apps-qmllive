@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = qmllivebench
 DESTDIR = $$BUILD_DIR/bin
 
-QT *= gui core quick widgets core-private
+QT *= gui core quick widgets core-private svg
 
 SOURCES += \
     main.cpp \
