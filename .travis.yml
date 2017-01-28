@@ -1,0 +1,41 @@
+language: cpp
+sudo: false
+
+matrix:
+  fast_finish: true
+  # allow_failures:
+  #          - env: "JOB=AppImage_x64"
+  #          - env: "JOB=AppImage_i686"
+  #          - env: "JOB=AppImage_armhf"
+  #          - env: "JOB=Android_armv7"
+  #          - env: "JOB=MacOSX"
+  include:
+    # 1st parallel build job - portable Linux AppImage 64-bit x86 build on CentOS
+    - env: "JOB=AppImage_x64"
+      addons:
+        apt:
+          packages:
+          - bsdtar
+          - curl
+          # - zsync
+      services:
+        - docker
+      script:
+        - "if [[ $APPIMAGE_BUILD_ARCHS == *x86_64* ]]; then ./build/travis/job_AppImage/build.sh --x86_64 --upload-branches $APPIMAGE_UPLOAD_BRANCHES; fi"
+
+    # 2nd parallel build job - Mac OSX disk image
+    - env: "JOB=MacOSX"
+      os: osx
+      osx_image: xcode7.3
+      before_install:
+        - source build/travis/job_macos/before_install.sh
+      install:
+        - "./build/travis/job_macos/install.sh"
+      script:
+        - "./build/travis/job_macos/build.sh --upload-branches $MACOSX_UPLOAD_BRANCHES"
+
+notifications:
+  email:
+    recipients:
+    on_success: change
+    on_failure: always
