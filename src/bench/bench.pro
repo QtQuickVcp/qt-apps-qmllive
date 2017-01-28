@@ -58,16 +58,26 @@ FORMS += \
 include(../widgets/widgets.pri)
 include(../src.pri)
 
-# install rules
-isEmpty(PREFIX) {
-    target.path = $$[QT_INSTALL_BINS]
-} else {
-    macos: INSTALLSUBDIR=$${TARGET}.app/Contents/MacOS/
-    macos: CONFIG -= app_bundle
-    target.path = $$PREFIX
+OTHER_FILES += \
+    ../../misc/*.*
+
+windows: {
+    RC_FILE = ../../icons/appicon.rc
 }
 
-INSTALLS += target
+macx: {
+    ICON = ../../icons/appicon.icns
+    QMAKE_POST_LINK += $$QMAKE_COPY $$ICON $${TARGET}.app/Contents/Resources/qmllivebench.icns
+}
 
-win32: RC_FILE = ../../icons/appicon.rc
-osx: ICON = ../../icons/appicon.icns
+linux: !android: {
+target.path = /usr/bin
+
+desktop.path = /usr/share/applications
+desktop.files = ../../misc/qmllivebench.desktop
+
+icon.path = /usr/share/pixmaps
+icon.files = ../../icons/qmllivebench.png
+
+INSTALLS += target desktop icon
+}
