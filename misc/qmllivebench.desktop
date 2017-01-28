@@ -1,0 +1,19 @@
+[Desktop Entry]
+Categories=Qt;Utility;
+Comment=QML live coding environment
+Encoding=UTF-8
+Exec=qmllivebench
+GenericName=QML Live Bench
+Icon=qmllivebench
+MimeType=
+Name=QmlLiveBench
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=1.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

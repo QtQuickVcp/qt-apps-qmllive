@@ -65,5 +65,24 @@ macx*: CONFIG -= app_bundle
 target.path = $$PREFIX/bin
 INSTALLS += target
 
-win32: RC_FILE = ../../icons/appicon.rc
-macx*: ICON = ../../icons/appicon.icns
+OTHER_FILES += \
+    ../../misc/*.*
+
+windows: {
+    RC_FILE = ../../icons/appicon.rc
+}
+
+macx*: {
+    ICON = ../../icons/appicon.icns
+    QMAKE_POST_LINK += $$QMAKE_COPY $$ICON $${TARGET}.app/Contents/Resources/qmllivebench.icns
+}
+
+linux: !android: {
+desktop.path = /usr/share/applications
+desktop.files = ../../misc/qmllivebench.desktop
+
+icon.path = /usr/share/pixmaps
+icon.files = ../../icons/qmllivebench.png
+
+INSTALLS += desktop icon
+}
