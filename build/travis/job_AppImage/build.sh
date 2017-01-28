@@ -11,7 +11,7 @@ set -e # exit on error
 set -x # echo commands
 
 # create a full clone
-git fetch --unshallow
+#git fetch --unshallow
 # find out version number
 release=1
 git describe --exact-match HEAD 2> /dev/null || release=0
