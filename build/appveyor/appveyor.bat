@@ -44,10 +44,11 @@ nmake
 
 SET PACKAGENAME=QmlLiveBench
 SET TARGETNAME=qmllivebench
+set APPDIR=src/bench
 mkdir %PACKAGENAME%
 cd %PACKAGENAME%
-cp ../src/bench/release/%TARGETNAME%.exe .
-windeployqt --angle --release --qmldir ../../src/bench/ %TARGETNAME%.exe
+cp ../%APPDIR%/release/%TARGETNAME%.exe .
+windeployqt --angle --release --qmldir ../../%APPDIR%/ %TARGETNAME%.exe
 cd ..
 7z a %PACKAGENAME%.zip %PACKAGENAME%/
 

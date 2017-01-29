@@ -77,7 +77,7 @@ if [ "${upload}" ]; then
     fi
     mv build.release/${packagename}.AppImage ${target}-${version}-${platform}.AppImage
     # Upload AppImage to Bintray
-    ./build/travis/AppImage/bintray_app.sh ${packagename}*.AppImage
+    ./build/travis/job_AppImage/bintray_app.sh ${packagename}*.AppImage
 else
   echo "On branch '$branch' so AppImage will not be uploaded." >&2
 fi

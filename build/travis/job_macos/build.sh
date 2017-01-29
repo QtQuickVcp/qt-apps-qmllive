@@ -50,14 +50,16 @@ ls
 # create Mac disk image
 targetname=qmllivebench
 dmgname=QmlLiveBench
+builddir=${PWD}
 qmldir=${PWD}/../src/bench/
-appdir=./src/bench/
+appdir=${PWD}/bin/
 cd $appdir
 ls
 macdeployqt ${targetname}.app -qmldir=$qmldir -dmg -verbose=2
-cd ../../
+cd ${builddir}
 mv ${appdir}/${targetname}.dmg ${dmgname}.dmg
 
+# back to root directory
 cd ..
 
 # Should the AppImage be uploaded?
