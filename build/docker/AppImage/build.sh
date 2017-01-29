@@ -4,7 +4,7 @@
 set -e # exit on error
 set -x # echo commands
 
-project=qmllive
+project=qt-apps-qmllive
 sudo docker pull machinekoder/qtquickvcp-docker-linux-x64:latest
 sudo docker rm ${project}-linux-x64 || true
 sudo docker run --name ${project}-linux-x64 -i -v \

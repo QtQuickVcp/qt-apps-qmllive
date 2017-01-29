@@ -29,19 +29,21 @@ else
     upload=true
 fi
 
-echo "#define REVISION \"${version}\"" > ./src/revision.h
+revisionfile="./src/revision.h"
+echo "#define REVISION \"${version}\"" > ${revisionfile}
 
 # fetch QtQuickVcp libs
 ./build/fetch-libs.sh
 
 # Build AppImage depending on arch specified in $1 if cross-compiling, else default build x86_64
+projectdir=qt-apps-qmllive
 case "$1" in
 
   * )
     [ "$1" == "--x86_64" ] && shift || true
     # Build QtQuickVcp AppImage inside native (64-bit x86) Docker image
-    docker run -i -v "${PWD}:/QtQuickVcp" machinekoder/qtquickvcp-docker-linux-x64:latest \
-           /bin/bash -c "/QtQuickVcp/build/Linux/portable/Recipe"
+    docker run -i -v "${PWD}:/${projectdir}" machinekoder/qtquickvcp-docker-linux-x64:latest \
+           /bin/bash -c "/${projectdir}/build/Linux/portable/Recipe"
     platform="x64"
     ;;
 esac
@@ -67,15 +69,15 @@ fi
 
 if [ "${upload}" ]; then
     # rename binaries
-    targetname=QmlLiveBench
+    packagename=QmlLiveBench
     if [ $release -eq 1 ]; then
-        target="${targetname}"
+        target="${packagename}"
     else
-        target="${targetname}_Development"
+        target="${packagename}_Development"
     fi
-    mv build.release/${targetname}.AppImage ${target}-${version}-${platform}.AppImage
+    mv build.release/${packagename}.AppImage ${target}-${version}-${platform}.AppImage
     # Upload AppImage to Bintray
-    ./build/travis/AppImage/bintray_app.sh ${targetname}*.AppImage
+    ./build/travis/AppImage/bintray_app.sh ${packagename}*.AppImage
 else
   echo "On branch '$branch' so AppImage will not be uploaded." >&2
 fi

@@ -51,7 +51,7 @@ WEBSITE_URL="https://github.com/$GITHUB_REPO"
 ISSUE_TRACKER_URL="https://github.com/$GITHUB_REPO/issues"
 VCS_URL="https://github.com/${GITHUB_REPO}.git" # Mandatory for packages in free Bintray repos
 LICENSE="LGPL-2.1"
-TARGET_NAME="qmllivebench"
+TARGET_NAME="QmlLiveBench"
 
 API="https://api.bintray.com"
 

@@ -49,15 +49,15 @@ export QT_QPA_PLATFORM_PLUGIN_PATH="${PWD}/qt5/plugins/platforms"
 export QT_INSTALL_PREFIX="${PWD}/qt5"
 
 arch=x64
-project=qmllive
-cp ${project}/build/libs/qtquickvcp-${arch}.tar.gz qtquickvcp.tar.gz
+projectdir=qt-apps-qmllive
+cp ${projectdir}/build/libs/qtquickvcp-${arch}.tar.gz qtquickvcp.tar.gz
 mkdir -p output && tar xzf qtquickvcp.tar.gz -C output
 rm qtquickvcp.tar.gz
 
 mv output/qml/Machinekit $QML2_IMPORT_PATH/
 mv output/lib/* $QT_INSTALL_PREFIX/lib/
 
-cd ${project}
+cd ${projectdir}
 
 mkdir -p build.release
 cd build.release
@@ -70,16 +70,17 @@ make install
 qt-deploy ../build/deployment-scripts/linux_x64.ini --deploy
 
 # prepare AppDir
-targetname=QmlLiveBench
-cd ${targetname}.AppDir
+appimagename=QmlLiveBench
+targetname=qmllivebench
+cd ${appimagename}.AppDir
 cp /usr/share/pixmaps/qmllivebench.png .
 cp /usr/share/applications/qmllivebench.desktop .
 mv ${targetname} AppRun
 cd ..
 
 # prepare variables
-appdir=${PWD}/${targetname}.AppDir/
-appimage=${PWD}/${targetname}.AppImage
+appdir=${PWD}/${appimagename}.AppDir/
+appimage=${PWD}/${appimagename}.AppImage
 
 # back to home folder
 cd ../../

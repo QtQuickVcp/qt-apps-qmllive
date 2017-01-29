@@ -2,7 +2,7 @@
 # Run this script from the projects root directory
 BASEDIR=${PWD}
 DISTDIR="${BASEDIR}/dist"
-PROJECTDIR=qmllive
+PROJECTDIR=qt-apps-qmllive
 cd ..
 sudo rm -rf docker-build
 cp -r ${PROJECTDIR} docker-build
