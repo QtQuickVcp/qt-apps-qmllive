@@ -73,8 +73,10 @@ windows: {
 }
 
 macx*: {
+    QMAKE_INFO_PLIST = $$PWD/../../misc/mac_Info.plist
     ICON = $$PWD/../../icons/appicon.icns
-    QMAKE_POST_LINK += $$QMAKE_COPY $$ICON $${TARGET}.app/Contents/Resources/qmllivebench.icns
+    QMAKE_POST_LINK += $$QMAKE_COPY $${QMAKE_INFO_PLIST} $${DESTDIR}/$${TARGET}.app/Contents/Info.plist $$escape_expand(\n\t)
+    QMAKE_POST_LINK += $$QMAKE_COPY $$ICON $${DESTDIR}/$${TARGET}.app/Contents/Resources/qmllivebench.icns
 }
 
 linux: !android: {
