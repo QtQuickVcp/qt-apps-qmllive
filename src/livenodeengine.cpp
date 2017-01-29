@@ -251,11 +251,13 @@ void LiveNodeEngine::recreateView()
         delete m_windowObject;
 
     if (m_recreateView) {
-        //m_recreateView->setSource(QUrl());
-        m_recreateView->engine()->clearComponentCache();
+        auto engine = m_recreateView->engine();
         delete m_recreateView;
-        if (m_reloadPlugins)
+        engine->clearComponentCache();
+        if (m_reloadPlugins) {
+            // TODO must recreate QML engine before calling this
             qmlClearTypeRegistrations();
+        }
         QQuickPixmap::purgeCache();
     }
 
