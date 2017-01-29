@@ -66,23 +66,23 @@ target.path = $$PREFIX/bin
 INSTALLS += target
 
 OTHER_FILES += \
-    ../../misc/*.*
+    $$PWD/../../misc/*.*
 
 windows: {
-    RC_FILE = ../../icons/appicon.rc
+    RC_FILE = $$PWD/../../icons/appicon.rc
 }
 
 macx*: {
-    ICON = ../../icons/appicon.icns
+    ICON = $$PWD/../../icons/appicon.icns
     QMAKE_POST_LINK += $$QMAKE_COPY $$ICON $${TARGET}.app/Contents/Resources/qmllivebench.icns
 }
 
 linux: !android: {
 desktop.path = /usr/share/applications
-desktop.files = ../../misc/qmllivebench.desktop
+desktop.files = $$PWD/../../misc/qmllivebench.desktop
 
 icon.path = /usr/share/pixmaps
-icon.files = ../../icons/qmllivebench.png
+icon.files = $$PWD/../../icons/qmllivebench.png
 
 INSTALLS += desktop icon
 }
