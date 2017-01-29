@@ -43,9 +43,9 @@
 
 BenchLiveNodeEngine::BenchLiveNodeEngine(QObject *parent)
     : LiveNodeEngine(parent),
-      m_view(0),
-      m_ww(0),
-      m_workspaceView(0),
+      m_view(nullptr),
+      m_ww(nullptr),
+      m_workspaceView(nullptr),
       m_ignoreCache(false),
       m_clipToRootObject(false)
 {

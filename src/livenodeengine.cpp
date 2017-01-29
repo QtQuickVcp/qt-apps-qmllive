@@ -36,7 +36,7 @@
 #include "imageadapter.h"
 #include "fontadapter.h"
 
-#include "QtQml/qqml.h"
+#include <QtQml>
 #include "QtQuick/private/qquickpixmapcache_p.h"
 
 // TODO: create proxy configuration settings, controlled by command line and ui
@@ -85,8 +85,8 @@ LiveNodeEngine::LiveNodeEngine(QObject *parent)
     , m_xOffset(0)
     , m_yOffset(0)
     , m_rotation(0)
-    , m_view(0)
-    , m_recreateView(0)
+    , m_view(nullptr)
+    , m_recreateView(nullptr)
     , m_delayReload(new QTimer(this))
     , m_mode(ReloadDocument)
     , m_pluginFactory(new ContentPluginFactory(this))
@@ -123,7 +123,7 @@ LiveNodeEngine::LiveNodeEngine(QObject *parent)
  */
 void LiveNodeEngine::setXOffset(int offset)
 {
-    QQuickView *view = 0;
+    QQuickView *view = nullptr;
 
     if (m_view)
         view = m_view;
@@ -148,7 +148,7 @@ int LiveNodeEngine::xOffset() const
  */
 void LiveNodeEngine::setYOffset(int offset)
 {
-    QQuickView *view = 0;
+    QQuickView *view = nullptr;
 
     if (m_view)
         view = m_view;
@@ -174,7 +174,7 @@ int LiveNodeEngine::yOffset() const
 
 void LiveNodeEngine::setRotation(int rotation)
 {
-    QQuickView *view = 0;
+    QQuickView *view = nullptr;
 
     if (m_view)
         view = m_view;
@@ -302,7 +302,7 @@ void LiveNodeEngine::checkQmlFeatures(QQuickView *view)
  */
 void LiveNodeEngine::reloadDocument()
 {
-    QQuickView *view = 0;
+    QQuickView *view = nullptr;
 
     if (m_mode == RecreateView) {
         recreateView();
@@ -375,7 +375,7 @@ QUrl LiveNodeEngine::queryDocumentViewer(const QUrl& url)
         }
     }
 
-    m_activePlugin = 0;
+    m_activePlugin = nullptr;
 
     return url;
 }
