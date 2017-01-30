@@ -12,7 +12,7 @@ isEmpty(PREFIX) {
 
 INSTALLS += target
 
-QT = gui core quick widgets
+QT = gui core quick widgets svg
 
 SOURCES += \
     main.cpp

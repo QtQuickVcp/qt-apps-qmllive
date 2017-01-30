@@ -1,7 +1,7 @@
 TARGET = qmlliveruntime
 DESTDIR = $$BUILD_DIR/bin
 
-QT *= widgets quick
+QT *= widgets quick svg
 osx: CONFIG -= app_bundle
 
 SOURCES += main.cpp

@@ -35,31 +35,6 @@
 #include "options.h"
 #include "mainwindow.h"
 
-
-static void setDarkStyle(QApplication *app)
-{
-    QStyle *style = QStyleFactory::create("fusion");
-    if (!style) {
-        return;
-    }
-    app->setStyle(style);
-
-    QPalette palette;
-    palette.setColor(QPalette::Window, QColor("#3D3D3D"));
-    palette.setColor(QPalette::WindowText, QColor("#FFFFFF"));
-    palette.setColor(QPalette::Base, QColor("#303030"));
-    palette.setColor(QPalette::AlternateBase, QColor("#4A4A4A"));
-    palette.setColor(QPalette::ToolTipBase, QColor("#FFFFFF"));
-    palette.setColor(QPalette::ToolTipText, QColor("#FFFFFF"));
-    palette.setColor(QPalette::Text, QColor("#F0F0F0"));
-    palette.setColor(QPalette::Button, QColor("#353535"));
-    palette.setColor(QPalette::ButtonText, QColor("#FFFFFF"));
-    palette.setColor(QPalette::BrightText, QColor("#D0021B"));
-    palette.setColor(QPalette::Highlight, QColor("#F19300"));
-    palette.setColor(QPalette::HighlightedText, QColor("#1C1C1C"));
-    app->setPalette(palette);
-}
-
 static void parseArguments(const QStringList& arguments, Options *options)
 {
     QCommandLineParser parser;
@@ -128,8 +103,6 @@ int main(int argc, char** argv)
     app.setOrganizationName("Pelagicore");
     app.setAttribute(Qt::AA_NativeWindows, true);
     app.setAttribute(Qt::AA_ImmediateWidgetCreation, true);
-
-    setDarkStyle(&app);
 
     Options *options = Options::instance();
     parseArguments(app.arguments(), options);

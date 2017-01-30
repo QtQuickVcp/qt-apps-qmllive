@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = qmllivebench
 DESTDIR = $$BUILD_DIR/bin
 
-QT *= gui core quick widgets core-private
+QT *= gui core quick widgets core-private svg
 
 SOURCES += \
     main.cpp \
@@ -58,16 +58,28 @@ FORMS += \
 include(../widgets/widgets.pri)
 include(../src.pri)
 
-# install rules
-isEmpty(PREFIX) {
-    target.path = $$[QT_INSTALL_BINS]
-} else {
-    macos: INSTALLSUBDIR=$${TARGET}.app/Contents/MacOS/
-    macos: CONFIG -= app_bundle
-    target.path = $$PREFIX
+OTHER_FILES += \
+    $$PWD/../../misc/*.*
+
+windows: {
+    RC_FILE = $$PWD/../../icons/appicon.rc
 }
 
-INSTALLS += target
+macx: {
+    QMAKE_INFO_PLIST = $$PWD/../../misc/mac_Info.plist
+    ICON = $$PWD/../../icons/appicon.icns
+    QMAKE_POST_LINK += $$QMAKE_COPY $${QMAKE_INFO_PLIST} $${DESTDIR}/$${TARGET}.app/Contents/Info.plist $$escape_expand(\n\t)
+    QMAKE_POST_LINK += $$QMAKE_COPY $$ICON $${DESTDIR}/$${TARGET}.app/Contents/Resources/qmllivebench.icns
+}
 
-win32: RC_FILE = ../../icons/appicon.rc
-osx: ICON = ../../icons/appicon.icns
+linux: !android: {
+target.path = /usr/bin
+
+desktop.path = /usr/share/applications
+desktop.files = $$PWD/../../misc/qmllivebench.desktop
+
+icon.path = /usr/share/pixmaps
+icon.files = $$PWD/../../icons/qmllivebench.png
+
+INSTALLS += target desktop icon
+}
