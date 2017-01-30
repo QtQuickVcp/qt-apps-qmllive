@@ -61,7 +61,6 @@ include(../widgets/widgets.pri)
 include(../lib.pri)
 
 # install rules
-macx*: CONFIG -= app_bundle
 target.path = $$PREFIX/bin
 INSTALLS += target
 

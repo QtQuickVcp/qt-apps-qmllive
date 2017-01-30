@@ -55,7 +55,7 @@ qmldir=${PWD}/../src/bench/
 appdir=${PWD}/bin/
 cd $appdir
 ls
-macdeployqt ${targetname}.app -qmldir=$qmldir -dmg -verbose=2
+macdeployqt ${targetname}.app -qmldir=${qmldir} -dmg -verbose=2
 cd ${builddir}
 mv ${appdir}/${targetname}.dmg ${dmgname}.dmg
 
