@@ -35,6 +35,13 @@ if %release% == 0 (
 echo #define REVISION "%version%" > src\revision.h
 appveyor UpdateBuild -Version "%version%-%ARCH%"
 
+:: download and install QtQuickVcp
+appveyor DownloadFile https://dl.bintray.com/machinekoder/QtQuickVcp-Development/QtQuickVcp_Development-latest-Windows-%ARCH%.zip -Filename QtQuickVcp.zip
+7z x QtQuickVcp.zip
+cp lib\libzmq.dll %QTDIR%\lib\
+mv lib\libzmq.dll %QTDIR%\lib\
+cp -r qml\Machinekit %QTDIR%\qml\
+
 :: start build
 cd %APPVEYOR_BUILD_FOLDER%
 mkdir build.release
