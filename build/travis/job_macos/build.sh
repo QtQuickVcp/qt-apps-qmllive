@@ -40,6 +40,15 @@ export QML2_IMPORT_PATH="${QT_PATH}/qml"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_PATH}/plugins/platforms"
 export QT_INSTALL_PREFIX="${QT_PATH}"
 
+# fetch and install QtQuickVcp lib
+url=https://dl.bintray.com/machinekoder/QtQuickVcp-Development/QtQuickVcp_Development-latest-MacOSX-x64.tar.gz
+wget -O qtquickvcp.tar.gz ${url}
+mkdir -p output && tar xzf qtquickvcp.tar.gz -C output
+rm qtquickvcp.tar.gz
+mv output/qml/Machinekit $QML2_IMPORT_PATH/
+mv output/lib/* $QT_INSTALL_PREFIX/lib/
+
+# start the build
 mkdir -p build.release
 cd build.release
 qmake -r ..
