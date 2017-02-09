@@ -3,12 +3,12 @@ sudo: false
 
 matrix:
   fast_finish: true
-  # allow_failures:
+  allow_failures:
   #          - env: "JOB=AppImage_x64"
   #          - env: "JOB=AppImage_i686"
   #          - env: "JOB=AppImage_armhf"
   #          - env: "JOB=Android_armv7"
-  #          - env: "JOB=MacOSX"
+             - env: "JOB=MacOSX"
   include:
     # 1st parallel build job - portable Linux AppImage 64-bit x86 build on CentOS
     - env: "JOB=AppImage_x64"
