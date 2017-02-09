@@ -32,8 +32,12 @@ fi
 revisionfile="./src/revision.h"
 echo "#define REVISION \"${version}\"" > ${revisionfile}
 
-# fetch QtQuickVcp libs
-./build/fetch-libs.sh
+# fetch QtQuickVcp lib
+mkdir -p build/libs
+cd build/libs
+url=https://dl.bintray.com/machinekoder/QtQuickVcp-Development/QtQuickVcp_Development-latest-Linux-x64.tar.gz
+wget -O qtquickvcp-x64.tar.gz ${url}
+cd ../../
 
 # Build AppImage depending on arch specified in $1 if cross-compiling, else default build x86_64
 projectdir=qt-apps-qmllive
