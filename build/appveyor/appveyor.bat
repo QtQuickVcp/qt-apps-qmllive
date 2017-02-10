@@ -58,6 +58,7 @@ mkdir %PACKAGENAME%
 cd %PACKAGENAME%
 cp ../%APPDIR%/%TARGETNAME%.exe .
 cp ../%LIBDIR%/qmllive1.dll .
+cp %QTDIR%\lib\libzmq.dll .
 windeployqt --angle --release --qmldir ../../%QMLDIR%/ %TARGETNAME%.exe
 cd ..
 7z a %PACKAGENAME%.zip %PACKAGENAME%/
