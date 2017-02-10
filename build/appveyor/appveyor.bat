@@ -53,9 +53,11 @@ SET PACKAGENAME=QmlLiveBench
 SET TARGETNAME=qmllivebench
 SET QMLDIR=src/bench
 SET APPDIR=bin
+SET LIBDIR=lib
 mkdir %PACKAGENAME%
 cd %PACKAGENAME%
 cp ../%APPDIR%/%TARGETNAME%.exe .
+cp ../%LIBDIR%/qmllive1.dll .
 windeployqt --angle --release --qmldir ../../%QMLDIR%/ %TARGETNAME%.exe
 cd ..
 7z a %PACKAGENAME%.zip %PACKAGENAME%/
