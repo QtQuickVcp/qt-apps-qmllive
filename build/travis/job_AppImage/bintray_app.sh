@@ -46,7 +46,7 @@ BINTRAY_API_KEY="${BINTRAY_API_KEY:?Environment variable missing/empty!}" # env
 BINTRAY_REPO_OWNER="${BINTRAY_REPO_OWNER:-$BINTRAY_USER}" # env, or use BINTRAY_USER as default
 [ "${BINTRAY_REPO_OWNER}" == "$BINTRAY_MASTER" ] && TRUSTED="true" || TRUSTED="false"
 
-GITHUB_REPO="machinekoder/qt-apps-qmllive"
+GITHUB_REPO="qtquickvcp/qt-apps-qmllive"
 WEBSITE_URL="https://github.com/$GITHUB_REPO"
 ISSUE_TRACKER_URL="https://github.com/$GITHUB_REPO/issues"
 VCS_URL="https://github.com/${GITHUB_REPO}.git" # Mandatory for packages in free Bintray repos
