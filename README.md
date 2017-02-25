@@ -15,7 +15,7 @@ Copyright (C) 2016 Pelagicore AG
 
 |   |  Travis CI | AppVeyor |
 |----------|:----:|:----:|
-| Status | [![Build Status](https://api.travis-ci.org/machinekoder/qt-apps-qmllive.svg?branch=master)](http://travis-ci.org/machinekoder/qt-apps-qmllive) | [![Build Status](https://ci.appveyor.com/api/projects/status/5k70msy5kt2n8wk0/branch/master?svg=true)](https://ci.appveyor.com/project/machinekoder/qt-apps-qmllive) |
+| Status | [![Build Status](https://api.travis-ci.org/qtquickvcp/qt-apps-qmllive.svg?branch=master)](http://travis-ci.org/qtquickvcp/qt-apps-qmllive) | [![Build Status](https://ci.appveyor.com/api/projects/status/5k70msy5kt2n8wk0/branch/master?svg=true)](https://ci.appveyor.com/project/machinekoder/qt-apps-qmllive) |
 
 <a name="download" />
 ## Download
