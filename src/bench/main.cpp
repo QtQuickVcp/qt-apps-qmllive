@@ -487,6 +487,7 @@ void SlaveApplication::forwardArguments()
 
 int main(int argc, char** argv)
 {
+    qputenv("QML_DISABLE_DISK_CACHE", "true");
     QScopedPointer<Application> app(Application::create(argc, argv));
     return app->exec();
 }
